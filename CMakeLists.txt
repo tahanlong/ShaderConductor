@@ -40,6 +40,9 @@ add_definitions(-D_ITERATOR_DEBUG_LEVEL=0)
 # Handle a compiling issue of SPIR-V
 if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC")
+    if(CMAKE_C_COMPILER_ID MATCHES Clang)
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++")
+    endif()
 
     foreach(flagVar
         CMAKE_SHARED_LINKER_FLAGS_RELEASE CMAKE_SHARED_LINKER_FLAGS_MINSIZEREL
